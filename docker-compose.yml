@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: ./test_task
+    container_name: django_web
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./test_task:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+
+  redis:
+    image: redis:6.2
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  celery:
+    build:
+      context: ./test_task
+    container_name: celery_worker
+    command: celery -A test_task worker --loglevel=info
+    volumes:
+      - ./test_task:/app
+    depends_on:
+      - redis
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
