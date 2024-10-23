@@ -1,8 +1,8 @@
-from rest_framework.test import APITestCase
-from rest_framework import status
-from django.urls import reverse
 from django.contrib.auth.models import User
+from django.urls import reverse
+from rest_framework import status
 from rest_framework.response import Response
+from rest_framework.test import APITestCase
 
 
 class UserCreateViewTest(APITestCase):
@@ -10,18 +10,17 @@ class UserCreateViewTest(APITestCase):
         """
         Set up the test case with necessary data.
         """
-        self.url = reverse('register')
+        self.url = reverse("register")
         self.valid_payload = {
             "username": "testuser",
             "email": "testuser@example.com",
             "password": "testpassword123",
-            "password2": "testpassword123"
-
+            "password2": "testpassword123",
         }
         self.invalid_payload = {
             "username": "",
             "password": "short",
-            "email": "invalid-email-format"
+            "email": "invalid-email-format",
         }
 
     def test_create_user_success(self) -> None:
@@ -44,6 +43,8 @@ class UserCreateViewTest(APITestCase):
         """
         Test that an authenticated user cannot create a new user.
         """
-        self.client.force_authenticate(user=User.objects.create_user(username='existinguser', password='12345678'))
+        self.client.force_authenticate(
+            user=User.objects.create_user(username="existinguser", password="12345678")
+        )
         response: Response = self.client.post(self.url, self.valid_payload)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)

@@ -1,5 +1,6 @@
-from celery import shared_task
 from typing import Any, Optional
+
+from celery import shared_task
 from django.apps import apps
 
 
@@ -14,16 +15,17 @@ def set_auto_response_parent(comment_id: int) -> None:
     specified by the `time_response` attribute of the post.
     """
     try:
-        Comment: Any = apps.get_model('blog', 'Comment')
+        Comment: Any = apps.get_model("blog", "Comment")
         comment: Optional[Any] = Comment.objects.get(id=comment_id)
 
         if comment is None:
-            raise RuntimeError('Comment not found')
+            raise RuntimeError("Comment not found")
 
         Comment.objects.create(
+            parent=comment,
             post=comment.post,
             body=comment.post.auto_response_comment,
             author=comment.post.author,
         )
     except Exception:
-        raise RuntimeError('Something went wrong, try again')
+        raise RuntimeError("Something went wrong, try again")

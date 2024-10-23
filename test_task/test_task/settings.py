@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from datetime import timedelta
 from pathlib import Path
+
 import environ
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -183,3 +184,4 @@ CELERY_TASK_ACKS_LATE = True
 CELERY_TASK_RETRY = True
 CELERY_TIMEZONE = "UTC"
 USE_TZ = True
+# CELERY_TASK_ALWAYS_EAGER = True

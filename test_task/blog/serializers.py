@@ -1,7 +1,8 @@
 from typing import Union
 
 from rest_framework import serializers
-from .models import Post, Comment
+
+from .models import Comment, Post
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -9,7 +10,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields: Union[list[str], str] = '__all__'
+        fields: Union[list[str], str] = "__all__"
 
 
 class CommentSerializer(serializers.ModelSerializer):
@@ -17,4 +18,4 @@ class CommentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
-        fields: Union[list[str], str] = '__all__'
+        fields: Union[list[str], str] = "__all__"

@@ -1,7 +1,8 @@
+from typing import Any
+
 from rest_framework import permissions
 from rest_framework.request import Request
 from rest_framework.views import View
-from typing import Any
 
 
 class IsAdminOrMyNoteOrReadOnly(permissions.BasePermission):
@@ -15,7 +16,7 @@ class IsAdminOrMyNoteOrReadOnly(permissions.BasePermission):
          Allow access to list and retrieve actions for everyone,
         but require authentication for other actions.
         """
-        if view.action in ['list', 'retrieve']:
+        if view.action in ["list", "retrieve"]:
             return True
 
         return bool(request.user.is_authenticated)
