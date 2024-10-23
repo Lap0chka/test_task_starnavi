@@ -1,8 +1,13 @@
 Test Task Starnavi
 
+First of all, I would like to explain why I chose Django. 
+The main reason is that I don't have experience with FastAPI. 
+Additionally, I don't use Django Ninja for the same reason. I used DRF
+
 Overview
 
-This project implements a user registration and authentication system, as well as an API for managing posts and comments. Additionally, it includes profanity checking, automatic responses to comments, and analytics of comments posted over a specific period.
+This project implements a user registration and authentication system, as well as an API for managing posts and comments. 
+Additionally, it includes profanity checking, automatic responses to comments, and analytics of comments posted over a specific period.
 
 Key Features:
 User Registration: Allows users to register and create accounts.
@@ -21,4 +26,5 @@ Task Queue: Celery
 Message Broker/Cache: Redis
 Containerization: Docker, Docker Compose
 Database: sqlite
-Testing: rest_framework.test,  mypy for type checking, flake8 for linting, black for formatting
+Testing: rest_framework.test,  mypy for type checking, 
+flake8 for linting, black and isort for formatting 
