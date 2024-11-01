@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "django_celery_results",
     "rest_framework",
     "rest_framework_simplejwt",
+    'drf_yasg',
     # Apps
     "blog",
     "account",
